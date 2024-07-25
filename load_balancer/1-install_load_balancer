@@ -44,12 +44,13 @@ defaults
         errorfile 504 /etc/haproxy/errors/504.http
 frontend http_front
     bind *:80
+    mode http
     default_backend http_back
 
 backend http_back
     balance roundrobin
-    server 6253-web-01 54.221.177.140:80 check
-    server 6253-web-02 3.91.27.53:80 check
+    server 6157-web-01 18.207.93.159:80 check
+    server 6157-web-02 34.228.143.30:80 check
 "
 
 # Update package list and install HAProxy
@@ -61,6 +62,7 @@ sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.bak
 
 # Write the new HAProxy configuration
 # echo "$haproxy_config" | sudo tee /etc/haproxy/haproxy.cfg
+# shellcheck disable=SC2154
 echo "$haproxy_config" | sudo tee /etc/haproxy/haproxy.cfg
 
 # Enable HAProxy to be started by the init script
