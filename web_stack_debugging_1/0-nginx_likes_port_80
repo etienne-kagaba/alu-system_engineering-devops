@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Setup Nginx server
+service stop nginx > /dev/null 2>&1
+apt purge nginx nginx-common -y && apt update && apt install nginx -y
+service nginx start
+
+
